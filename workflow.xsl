@@ -1275,6 +1275,17 @@
                     </xsl:for-each>
                     </keywords>
                 </xsl:when>
+                <xsl:when test="@lemma">
+                    <keywords>
+                        <xsl:for-each select="current-group()">                        
+                        <term>
+                            <xsl:attribute name="key">
+                                <xsl:value-of select="@lemma"/>
+                            </xsl:attribute>
+                        </term>
+                    </xsl:for-each>
+                    </keywords>
+                </xsl:when>
                 <xsl:when test="@*"><!-- gruppieren bei gleichem Wert sollte noch überlegt werden -->
                     <keywords><xsl:for-each select="current-group()"><term> <xsl:copy-of select="@*"></xsl:copy-of>
                         <xsl:value-of select="."/></term></xsl:for-each></keywords>

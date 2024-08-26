@@ -8738,9 +8738,11 @@ decoDesc =
     ]
   ]
   element decoDesc {
+    mixed {
     (model.pLike+ | (summary?, decoNote+)),
     att.global.attributes,
     empty
+    }
   }
 decoNote =
   

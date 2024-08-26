@@ -8448,7 +8448,7 @@ altIdentifier =
      institution?,
      repository?,
      collection?,
-     idno,
+     idno?,
      note?),
     att.global.attributes,
     att.typed.attributes,

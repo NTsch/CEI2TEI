@@ -672,7 +672,7 @@
         </geogName>
     </xsl:template>
     <xsl:template match="cei:graphic" mode="image">
-        <graphic url="{@url}"/>
+        <graphic url="{replace(replace(@url, '\[', '%5B'), '\]', '%5D')}"/>
     </xsl:template>
     <xsl:template match="cei:group">
         <group>

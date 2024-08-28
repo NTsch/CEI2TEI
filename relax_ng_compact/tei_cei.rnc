@@ -8438,8 +8438,8 @@ altIdentifier =
   
   ## (alternative identifier) contains an alternative or former structured identifier used for a manuscript or other object, such as a former catalogue number. [10.4. The Manuscript Identifier]
   element altIdentifier {
-    (text,
-     placeName?,
+    mixed {
+    (placeName?,
      bloc?,
      country?,
      region?,
@@ -8455,6 +8455,7 @@ altIdentifier =
     att.typed.attributes,
     att.datable.attributes,
     empty
+    }
   }
 msName =
   

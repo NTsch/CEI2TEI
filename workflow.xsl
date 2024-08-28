@@ -66,7 +66,9 @@
             <teiHeader>
                 <fileDesc>
                     <titleStmt>
-                        <title/>
+                        <title>
+                            <xsl:value-of select="$oldid"/>
+                        </title>
                         <editor>
                             <xsl:value-of select="//atom:email"/>
                         </editor>

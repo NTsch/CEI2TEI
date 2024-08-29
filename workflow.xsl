@@ -596,12 +596,12 @@
         <xsl:variable name="to" select="@to"/>
         <xsl:choose>
             <xsl:when test="$from = $to">
-                <date when="{$from}">
+                <date when-custom="{$from}">
                     <xsl:apply-templates/>
                 </date>
             </xsl:when>
             <xsl:otherwise>
-                <date from="{$from}" to="{$to}">
+                <date from-custom="{$from}" to-custom="{$to}">
                     <xsl:apply-templates/>
                 </date>
             </xsl:otherwise>

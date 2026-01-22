@@ -410,14 +410,13 @@
         </witness>
     </xsl:template>
     <xsl:template match="cei:index">
-        <!-- ref="http://gams.uni-graz.at/skos/scheme/o:cord.2484#Historiated" -->
         <ref>
             <xsl:choose>
                 <xsl:when test="@lemma and @indexName">
                     <xsl:variable name="indexName">                      
                             <xsl:choose>
-                                <xsl:when test="@indexName = 'IllUrkGlossar'">2483</xsl:when>
-                                <xsl:when test="@indexName = 'illurk-vocabulary'">2484</xsl:when>
+                                <xsl:when test="@indexName = 'IllUrkGlossar'">illurkglossar</xsl:when>
+                                <xsl:when test="@indexName = 'illurk-vocabulary'">illurk-vocabulary</xsl:when>
                                 <xsl:otherwise> </xsl:otherwise>
                             </xsl:choose>                       
                     </xsl:variable>
@@ -1277,9 +1276,9 @@
                     <xsl:variable name="indexName">
                         <xsl:choose>
                             <xsl:when test="@indexName = 'IllUrkGlossar'"
-                                >http://gams.uni-graz.at/skos/scheme/o:cord.2483</xsl:when>
+                                >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurkglossar</xsl:when>
                             <xsl:when test="@indexName = 'illurk-vocabulary'"
-                                >http://gams.uni-graz.at/skos/scheme/o:cord.2484</xsl:when>
+                                >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurk-vocabulary</xsl:when>
                             <xsl:otherwise> </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable> 
@@ -1382,8 +1381,8 @@
     <xsl:template name="vocab_uri">
         <xsl:variable name="indexName">
             <xsl:choose>
-                <xsl:when test="@indexName = 'IllUrkGlossar'">2483</xsl:when>
-                <xsl:when test="@indexName = 'illurk-vocabulary'">2484</xsl:when>
+                <xsl:when test="@indexName = 'IllUrkGlossar'">illurkglossar</xsl:when>
+                <xsl:when test="@indexName = 'illurk-vocabulary'">illurk-vocabulary</xsl:when>
                 <xsl:otherwise> </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

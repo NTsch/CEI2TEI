@@ -265,9 +265,7 @@
                     <xsl:apply-templates select="//cei:lang_MOM"/>
                     <textClass>                         
                           <xsl:for-each-group select="//cei:index[@indexName]" group-by="@indexName">
-                              <keywords scheme="Illurk-Urkundenart">
-                                <xsl:call-template name="keywords"/>
-                              </keywords>
+                              <xsl:call-template name="keywords"/>
                           </xsl:for-each-group>
                         <xsl:for-each-group select="//cei:index[not(@indexName)][@lemma]" group-by="@lemma">
                             <xsl:call-template name="keywords"/>
@@ -1226,51 +1224,53 @@
     <xsl:template name="keywords">
             <xsl:choose><!-- exception for Illurks -->
                 <xsl:when test="lower-case(string(@indexName)) = 'illurk-urkundenart' or lower-case(string(@indexName)) = 'urkart'">
-                   <xsl:for-each select="current-group()/text()">
-                       <xsl:variable name="urkart">
-                        <xsl:choose>
-                            <xsl:when test="contains(normalize-space(.), 'Bischofsammel')">
-                                <xsl:text>bischofsammelindulgenz</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Schmäh')">
-                                <xsl:text>schmaehbrief</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Notariatsinstrument')">
-                                <xsl:text>notariatsinstrument</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Sammelindulgenz')">
-                                <xsl:text>sammelindulgenz</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Prunksupplik')">
-                                <xsl:text>prunksupplik</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Notariatsakt')">
-                                <xsl:text>notariatsakt</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Wappenbrief')">
-                                <xsl:text>wappenbrief</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Kardinalsammel')">
-                                <xsl:text>kardinalsammelindulgenz</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Frankreich')">
-                                <xsl:text>frankreich</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'IllUrkOe')">
-                                <xsl:text>oesterreich</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="contains(normalize-space(.), 'Kurie')">
-                                <xsl:text>kurie</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <xsl:if test="$urkart != ''">
-                        <term>
-                            <ref target="context:cord.illuminierteurkunden.{lower-case($urkart)}" type="context">
-                                <xsl:value-of select="."/>
-                            </ref>
-                        </term>
-                    </xsl:if></xsl:for-each>
+                    <keywords scheme="Illurk-Urkundenart">
+                        <xsl:for-each select="current-group()/text()">
+                            <xsl:variable name="urkart">
+                             <xsl:choose>
+                                 <xsl:when test="contains(normalize-space(.), 'Bischofsammel')">
+                                     <xsl:text>bischofsammelindulgenz</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Schmäh')">
+                                     <xsl:text>schmaehbrief</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Notariatsinstrument')">
+                                     <xsl:text>notariatsinstrument</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Sammelindulgenz')">
+                                     <xsl:text>sammelindulgenz</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Prunksupplik')">
+                                     <xsl:text>prunksupplik</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Notariatsakt')">
+                                     <xsl:text>notariatsakt</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Wappenbrief')">
+                                     <xsl:text>wappenbrief</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Kardinalsammel')">
+                                     <xsl:text>kardinalsammelindulgenz</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Frankreich')">
+                                     <xsl:text>frankreich</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'IllUrkOe')">
+                                     <xsl:text>oesterreich</xsl:text>
+                                 </xsl:when>
+                                 <xsl:when test="contains(normalize-space(.), 'Kurie')">
+                                     <xsl:text>kurie</xsl:text>
+                                 </xsl:when>
+                             </xsl:choose>
+                         </xsl:variable>
+                         <xsl:if test="$urkart != ''">
+                             <term>
+                                 <ref target="context:cord.illuminierteurkunden.{lower-case($urkart)}" type="context">
+                                     <xsl:value-of select="."/>
+                                 </ref>
+                             </term>
+                         </xsl:if></xsl:for-each>
+                    </keywords>
                 </xsl:when>
                 <xsl:when test="@indexName = 'IllUrkGlossar' or @indexName = 'illurk-vocabulary'">
                     <xsl:variable name="indexName">

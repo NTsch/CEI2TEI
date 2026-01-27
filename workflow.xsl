@@ -420,7 +420,7 @@
                     </xsl:variable>
                     <xsl:attribute name="target">
                         <xsl:value-of
-                            select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.', $indexName, '#', @lemma)"
+                            select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.', $indexName, '#', @lemma)"
                         />
                     </xsl:attribute>                    
                 </xsl:when>
@@ -1392,7 +1392,7 @@
                 <!--  <term>-->
                 <xsl:attribute name="ref">
                     <xsl:value-of
-                        select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.', $indexName, '#', $lemma)"
+                        select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.', $indexName, '#', $lemma)"
                     />
                 </xsl:attribute>
                 <!--</term>-->
@@ -1400,7 +1400,7 @@
             <xsl:when test="$lemma and ancestor::cei:decoDesc">             
                 <xsl:attribute name="target">
                     <xsl:value-of
-                        select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.', $indexName, '#', $lemma)"
+                        select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.', $indexName, '#', $lemma)"
                     />
                 </xsl:attribute>
               

@@ -81,20 +81,22 @@
                                 <surname>Vogeler</surname>
                             </persName>
                         </principal>
-                        <respStmt>
-                            <resp>Project Lead; Art historical description</resp>
-                            <persName ref="https://orcid.org/0000-0002-9503-7097" xml:id="mr">
-                                <forename>Martin</forename>
-                                <surname>Roland</surname>
-                            </persName>
-                        </respStmt>
-                        <respStmt>
-                            <resp>Art historical description</resp>
-                            <persName ref="https://orcid.org/0000-0002-8406-0785" xml:id="gb">
-                                <forename>Gabriele</forename>
-                                <surname>Bartz</surname>
-                            </persName>
-                        </respStmt>
+                        <xsl:if test="contains($oldid, 'IlluminierteUrkunden')">
+                            <respStmt>
+                                <resp>Project Lead; Art historical description</resp>
+                                <persName ref="https://orcid.org/0000-0002-9503-7097" xml:id="mr">
+                                    <forename>Martin</forename>
+                                    <surname>Roland</surname>
+                                </persName>
+                            </respStmt>
+                            <respStmt>
+                                <resp>Art historical description</resp>
+                                <persName ref="https://orcid.org/0000-0002-8406-0785" xml:id="gb">
+                                    <forename>Gabriele</forename>
+                                    <surname>Bartz</surname>
+                                </persName>
+                            </respStmt>
+                        </xsl:if>
                         <xsl:if test='$subcollections = "IlluminierteUrkundenIllUrkOe"'>
                             <respStmt>
                                 <resp>Art historical description</resp>
@@ -111,20 +113,22 @@
                                 </persName>
                             </respStmt>
                         </xsl:if>
-                        <respStmt>
-                            <resp>Diplomatic description</resp>
-                            <persName ref="https://orcid.org/0000-0003-3269-453X" xml:id="mg">
-                                <forename>Markus</forename>
-                                <surname>Gneiß</surname>
-                            </persName>
-                        </respStmt>
-                        <respStmt>
-                            <resp>Project Lead; Diplomatic description</resp>
-                            <persName ref="https://orcid.org/0000-0002-1967-6022" xml:id="az">
-                                <forename>Andreas</forename>
-                                <surname>Zajic</surname>
-                            </persName>
-                        </respStmt>
+                        <xsl:if test="contains($oldid, 'IlluminierteUrkunden')">
+                            <respStmt>
+                                <resp>Diplomatic description</resp>
+                                <persName ref="https://orcid.org/0000-0003-3269-453X" xml:id="mg">
+                                    <forename>Markus</forename>
+                                    <surname>Gneiß</surname>
+                                </persName>
+                            </respStmt>
+                            <respStmt>
+                                <resp>Project Lead; Diplomatic description</resp>
+                                <persName ref="https://orcid.org/0000-0002-1967-6022" xml:id="az">
+                                    <forename>Andreas</forename>
+                                    <surname>Zajic</surname>
+                                </persName>
+                            </respStmt>
+                        </xsl:if>
                         <respStmt>
                             <resp>Digital transformation; modelling</resp>
                             <persName ref="https://orcid.org/0000-0002-5114-0594" xml:id="sw">
@@ -139,17 +143,38 @@
                                 <surname>Bürgermeister</surname>
                             </persName>
                         </respStmt>
-                        <funder>
-                            <orgName ref="https://www.fwf.ac.at/">
-                                <choice>
-                                    <expan>Fonds zur Förderung der wissenschaftlichen
-                                        Forschung</expan>
-                                    <abbr>FWF</abbr>
-                                </choice>
-                            </orgName> Projekt P 26706-G21 "Illuminierten Urkunden als
+                        <xsl:choose>
+                            <xsl:when test="contains($oldid, 'IlluminierteUrkunden')">
+                                <funder>
+                                    <orgName ref="https://www.fwf.ac.at/">
+                                        <choice>
+                                            <expan>Fonds zur Förderung der wissenschaftlichen
+                                                Forschung</expan>
+                                            <abbr>FWF</abbr>
+                                        </choice>
+                                    </orgName> Projekt P 26706-G21 "Illuminierten Urkunden als
                             Gesamtkunstwerk" and Projekt FWF-ORD84 "Erhalt fachspezifischer
                             Funktionalitäten bei Langzeitarchivierung in einem allgemeinen
-                            Datenarchiv für die Geisteswissenschaften."</funder>
+                            Datenarchiv für die Geisteswissenschaften."
+                                </funder>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <funder>
+                                    <orgName ref="https://www.fwf.ac.at/">
+                                        <choice>
+                                            <expan>Fonds zur Förderung der wissenschaftlichen Forschung</expan>
+                                            <abbr>FWF</abbr>
+                                        </choice>
+                                    </orgName>
+                                    <orgName ref="https://www.anr.fr/">
+                                        <choice>
+                                            <expan>Agence nationale de la recherche</expan>
+                                            <abbr>ANR</abbr>
+                                        </choice>
+                                    </orgName> Projekt "Between Composition and Reception: the Authority of Medieval Charters - BeCoRe" gefördert von ANR (ANR-19-CE27-0021) und FWF (FWF-I-4502 Internationale Projekte).
+                                </funder>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </titleStmt>
                     <publicationStmt>
                         <publisher>
@@ -266,9 +291,9 @@
                     </abstract>
                     <xsl:apply-templates select="//cei:lang_MOM"/>
                     <textClass>                         
-                          <xsl:for-each-group select="//cei:index[@indexName]" group-by="@indexName">
-                              <xsl:call-template name="keywords"/>
-                          </xsl:for-each-group>
+                        <xsl:for-each-group select="//cei:index[@indexName]" group-by="@indexName">
+                            <xsl:call-template name="keywords"/>
+                        </xsl:for-each-group>
                         <xsl:for-each-group select="//cei:index[not(@indexName)][@lemma]" group-by="@lemma">
                             <xsl:call-template name="keywords"/>
                         </xsl:for-each-group>
@@ -277,7 +302,9 @@
                         </xsl:for-each-group>
                         <xsl:for-each-group select="//cei:index[not(@*)]" group-by=".">
                             <keywords>
-                           <term><xsl:value-of select="."/></term>
+                                <term>
+                                    <xsl:value-of select="."/>
+                                </term>
                             </keywords>
                         </xsl:for-each-group>                                 
                     </textClass>
@@ -1248,99 +1275,114 @@
         </p>
     </xsl:template>
     <xsl:template name="keywords">
-            <xsl:choose><!-- exception for Illurks -->
-                <xsl:when test="lower-case(string(@indexName)) = 'illurk-urkundenart' or lower-case(string(@indexName)) = 'urkart'">
-                    <keywords scheme="Illurk-Urkundenart">
-                        <xsl:for-each select="current-group()/text()">
-                            <xsl:variable name="urkart">
-                             <xsl:choose>
-                                 <xsl:when test="contains(normalize-space(.), 'Bischofsammel')">
-                                     <xsl:text>bischofsammelindulgenz</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Schmäh')">
-                                     <xsl:text>schmaehbrief</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Notariatsinstrument')">
-                                     <xsl:text>notariatsinstrument</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Sammelindulgenz')">
-                                     <xsl:text>sammelindulgenz</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Prunksupplik')">
-                                     <xsl:text>prunksupplik</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Notariatsakt')">
-                                     <xsl:text>notariatsakt</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Wappenbrief')">
-                                     <xsl:text>wappenbrief</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Kardinalsammel')">
-                                     <xsl:text>kardinalsammelindulgenz</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Frankreich')">
-                                     <xsl:text>frankreich</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'IllUrkOe')">
-                                     <xsl:text>oesterreich</xsl:text>
-                                 </xsl:when>
-                                 <xsl:when test="contains(normalize-space(.), 'Kurie')">
-                                     <xsl:text>kurie</xsl:text>
-                                 </xsl:when>
-                             </xsl:choose>
-                         </xsl:variable>
-                         <xsl:if test="$urkart != ''">
-                             <term>
-                                 <ref target="context:cord.illuminierteurkunden.{lower-case($urkart)}" type="context">
-                                     <xsl:value-of select="."/>
-                                 </ref>
-                             </term>
-                         </xsl:if></xsl:for-each>
-                    </keywords>
-                </xsl:when>
-                <xsl:when test="@indexName = 'IllUrkGlossar' or @indexName = 'illurk-vocabulary'">
-                    <xsl:variable name="indexName">
+        <xsl:variable name='index-name' select="lower-case(string(@indexName))"/>
+        <xsl:choose><!-- exception for Illurks -->
+            <xsl:when test="$index-name = 'illurk-urkundenart' or $index-name = 'urkart'">
+                <keywords scheme="Illurk-Urkundenart">
+                    <xsl:for-each select="current-group()/text()">
+                        <xsl:variable name="urkart">
+                            <xsl:choose>
+                                <xsl:when test="contains(normalize-space(.), 'Bischofsammel')">
+                                    <xsl:text>bischofsammelindulgenz</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Schmäh')">
+                                    <xsl:text>schmaehbrief</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Notariatsinstrument')">
+                                    <xsl:text>notariatsinstrument</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Sammelindulgenz')">
+                                    <xsl:text>sammelindulgenz</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Prunksupplik')">
+                                    <xsl:text>prunksupplik</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Notariatsakt')">
+                                    <xsl:text>notariatsakt</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Wappenbrief')">
+                                    <xsl:text>wappenbrief</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Kardinalsammel')">
+                                    <xsl:text>kardinalsammelindulgenz</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Frankreich')">
+                                    <xsl:text>frankreich</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'IllUrkOe')">
+                                    <xsl:text>oesterreich</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'Kurie')">
+                                    <xsl:text>kurie</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'GoettweigOSB')">
+                                    <xsl:text>goettweig</xsl:text>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:variable>
                         <xsl:choose>
-                            <xsl:when test="@indexName = 'IllUrkGlossar'"
-                                >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurkglossar</xsl:when>
-                            <xsl:when test="@indexName = 'illurk-vocabulary'"
-                                >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurk-vocabulary</xsl:when>
-                            <xsl:otherwise> </xsl:otherwise>
+                            <xsl:when test="$index-name = 'illurk-urkundenart' and $urkart != ''">
+                                <term>
+                                    <ref target="context:cord.illuminierteurkunden.{lower-case($urkart)}" type="context">
+                                        <xsl:value-of select="."/>
+                                    </ref>
+                                </term>
+                            </xsl:when>
+                            <xsl:when test="$index-name = 'urkart' and $urkart != ''">
+                                <term>
+                                    <ref target="context:cord.{lower-case($urkart)}" type="context">
+                                        <xsl:value-of select="."/>
+                                    </ref>
+                                </term>
+                            </xsl:when>
+                            <xsl:otherwise>test123</xsl:otherwise>
                         </xsl:choose>
-                    </xsl:variable> 
-                    <keywords>
-                        <xsl:attribute name="scheme">
-                            <xsl:value-of select="$indexName"/>
-                        </xsl:attribute>
-                   
-                    <xsl:for-each select="current-group()">                        
-                        <term>
-                            <xsl:if test="@lemma">
-                                <xsl:attribute name="key">
-                                    <xsl:value-of select="@lemma"/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <xsl:call-template name="vocab_uri"/>
-                        </term>
                     </xsl:for-each>
-                    </keywords>
-                </xsl:when>
-                <xsl:when test="@lemma">
-                    <keywords>
-                        <xsl:for-each select="current-group()">                        
-                        <term>
+                </keywords>
+            </xsl:when>
+            <xsl:when test="@indexName = 'IllUrkGlossar' or @indexName = 'illurk-vocabulary'">
+                <xsl:variable name="indexName">
+                    <xsl:choose>
+                        <xsl:when test="@indexName = 'IllUrkGlossar'"
+                            >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurkglossar</xsl:when>
+                        <xsl:when test="@indexName = 'illurk-vocabulary'"
+                            >http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.illurk-vocabulary</xsl:when>
+                        <xsl:otherwise> </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable> 
+                <keywords>
+                    <xsl:attribute name="scheme">
+                        <xsl:value-of select="$indexName"/>
+                    </xsl:attribute>
+               
+                <xsl:for-each select="current-group()">                        
+                    <term>
+                        <xsl:if test="@lemma">
                             <xsl:attribute name="key">
                                 <xsl:value-of select="@lemma"/>
                             </xsl:attribute>
-                        </term>
-                    </xsl:for-each>
-                    </keywords>
-                </xsl:when>
-                <xsl:when test="@*"><!-- gruppieren bei gleichem Wert sollte noch überlegt werden -->
-                    <keywords><xsl:for-each select="current-group()"><term> <xsl:copy-of select="@*"></xsl:copy-of>
-                        <xsl:value-of select="."/></term></xsl:for-each></keywords>
-                </xsl:when>
-            </xsl:choose> 
+                        </xsl:if>
+                        <xsl:call-template name="vocab_uri"/>
+                    </term>
+                </xsl:for-each>
+                </keywords>
+            </xsl:when>
+            <xsl:when test="@lemma">
+                <keywords>
+                    <xsl:for-each select="current-group()">                        
+                    <term>
+                        <xsl:attribute name="key">
+                            <xsl:value-of select="@lemma"/>
+                        </xsl:attribute>
+                    </term>
+                </xsl:for-each>
+                </keywords>
+            </xsl:when>
+            <xsl:when test="@*"><!-- gruppieren bei gleichem Wert sollte noch überlegt werden -->
+                <keywords><xsl:for-each select="current-group()"><term> <xsl:copy-of select="@*"></xsl:copy-of>
+                    <xsl:value-of select="."/></term></xsl:for-each></keywords>
+            </xsl:when>
+        </xsl:choose> 
     </xsl:template>
     <xsl:template name="list_people">
         <person>
@@ -1352,13 +1394,13 @@
                 </xsl:when>
             </xsl:choose>
             <persName>              
-                        <xsl:for-each select="@*">
-                            <xsl:if test="name() != 'key'">
-                                <xsl:attribute name="{name()}">
-                                    <xsl:value-of select="."/>
-                                </xsl:attribute>
-                            </xsl:if>
-                        </xsl:for-each>
+                <xsl:for-each select="@*">
+                    <xsl:if test="name() != 'key'">
+                        <xsl:attribute name="{name()}">
+                            <xsl:value-of select="."/>
+                        </xsl:attribute>
+                    </xsl:if>
+                </xsl:for-each>
                 <xsl:apply-templates/>
             </persName>
         </person>
@@ -1429,18 +1471,15 @@
                         select="concat('http://gams.uni-graz.at/skos/scheme/o:cord.controlledvocabulary.', $indexName, '#', $lemma)"
                     />
                 </xsl:attribute>
-              
             </xsl:when>
-
         </xsl:choose>
-
         <xsl:apply-templates/>
-
     </xsl:template>
-
+    
     <xsl:variable name="step-3">
         <xsl:apply-templates select="$step-2" mode="step-3"/>
     </xsl:variable>
+    
     <xsl:template match="node() | @*" mode="step-3">
         <xsl:copy>
             <xsl:apply-templates select="node() | @*" mode="step-3"/>

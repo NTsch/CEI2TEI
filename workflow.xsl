@@ -41,6 +41,8 @@
     <xsl:variable name="step-2">
         <xsl:apply-templates select="$step-1" mode="step-2"/>
     </xsl:variable>
+    
+    <xsl:variable name="langmom" select="/atom:entry//cei:lang_MOM"/>
 
     <xsl:template match="$step-1" mode="step-2">
         <!--<xsl:processing-instruction name="xml-model">href="file:/Z:/Documents/CEI_TEIP5/tei_cei/out/tei_cei.rnc" type="application/relax-ng-compact-syntax"</xsl:processing-instruction>-->
@@ -64,7 +66,7 @@
         <xsl:variable name="subcollections" select="/atom:entry//cei:index[@indexName = 'illurk-urkundenart']"/>
 
         <TEI>
-            <teiHeader>
+            <teiHeader xml:lang="de">
                 <fileDesc>
                     <titleStmt>
                         <title>
@@ -377,6 +379,15 @@
                 </facsimile>
             </xsl:if>
             <text>
+                <xsl:attribute name="xml:lang">
+                     <xsl:for-each select="document('lang_MOM.xml')//lang_MOM_entry">
+                         <xsl:if test="lang_mom[text() = $langmom]">
+                             <xsl:for-each select="tokenize(lang_iso, ',')">
+                                 <xsl:value-of select="normalize-space(.)"/>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:attribute>
                 <body>
                     <xsl:apply-templates select="//cei:tenor"/>
                 </body>
@@ -828,7 +839,6 @@
         </legalActor>
     </xsl:template>
     <xsl:template match="cei:lang_MOM">
-        <xsl:variable name="langmom" select="."/>
         <xsl:for-each select="document('lang_MOM.xml')//lang_MOM_entry">
             <xsl:if test="lang_mom[text() = $langmom]">
                 <langUsage>

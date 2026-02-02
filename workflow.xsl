@@ -690,7 +690,23 @@
         </geogName>
     </xsl:template>
     <xsl:template match="cei:graphic" mode="image">
-        <graphic url="{replace(replace(@url, '\[', '%5B'), '\]', '%5D')}"/>
+        <xsl:variable name="url">
+            <xsl:choose>
+                <xsl:when test="contains(@url, 'Goettweigjpgweb')">
+                    <xsl:value-of select="concat('https://images.monasterium.net/pics/114/', @url)"/>
+                </xsl:when>
+                <xsl:when test="contains(@url, 'Lambachjpgweb')">
+                    <xsl:value-of select="concat('https://images.monasterium.net/pics/72/', @url)"/>
+                </xsl:when>
+                <xsl:when test="contains(@url, 'Lilienfeldjpgweb')">
+                    <xsl:value-of select="concat('https://images.monasterium.net/pics/124/', @url)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="@url"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <graphic url="{replace(replace($url, '\[', '%5B'), '\]', '%5D')}"/>
     </xsl:template>
     <xsl:template match="cei:group">
         <group>

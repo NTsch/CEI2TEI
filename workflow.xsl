@@ -564,8 +564,20 @@
     </xsl:template>-->
     <xsl:template match="cei:c">
         <g>
+            <xsl:copy-of select="@*"/>
             <xsl:apply-templates/>
         </g>
+    </xsl:template>
+    <xsl:template match="cei:w">
+        <w>
+            <xsl:copy-of select="@*"/>
+            <xsl:apply-templates/>
+        </w>
+    </xsl:template>
+    <xsl:template match="cei:pc">
+        <pc>
+            <xsl:apply-templates/>
+        </pc>
     </xsl:template>
     <xsl:template match="cei:chDesc">
         <!--    <xsl:apply-templates/> -->

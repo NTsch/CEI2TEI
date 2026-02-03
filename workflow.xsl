@@ -1335,7 +1335,6 @@
                                     </ref>
                                 </term>
                             </xsl:when>
-                            <xsl:otherwise>test123</xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
                 </keywords>

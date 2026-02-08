@@ -653,7 +653,7 @@
         </damage>
     </xsl:template>
     <xsl:template match="cei:date">
-        <date>
+        <date when-custom="{@value}">
             <xsl:apply-templates/>
         </date>
     </xsl:template>

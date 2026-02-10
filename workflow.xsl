@@ -421,7 +421,7 @@
         <witness>
             <msDesc>
                 <xsl:choose>
-                    <xsl:when  test="//cei:witnessOrig/not(cei:archIdentifier)">
+                    <xsl:when  test="exists(//cei:witnessOrig[not(cei:archIdentifier)])">
                         <msIdentifier><p/></msIdentifier>
                     </xsl:when>
                     <xsl:otherwise>
@@ -1324,7 +1324,13 @@
                                     <xsl:text>kurie</xsl:text>
                                 </xsl:when>
                                 <xsl:when test="contains(normalize-space(.), 'GoettweigOSB')">
-                                    <xsl:text>goettweig</xsl:text>
+                                    <xsl:text>at.stiag-goettweigosb</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'LambachOSB')">
+                                    <xsl:text>at.stial-lambachosb</xsl:text>
+                                </xsl:when>
+                                <xsl:when test="contains(normalize-space(.), 'LilienfeldOCist')">
+                                    <xsl:text>at.stiali-lilienfeldocist</xsl:text>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>

@@ -183,7 +183,7 @@
                                 >Institut für Digitale Geisteswissenschaften,
                                 Karl-Franzens-Universität Graz</orgName>
                             <!-- old id is included in the new id and is hashed in fedora-->
-                            <idno type="PID" resp="https://https://illurk.hypotheses.org//">
+                            <idno type="PID" resp="https://illurk.hypotheses.org//">
                                 <xsl:value-of select="$pid"/>
                             </idno>
                             <ref target="{$contextname}" type="context">

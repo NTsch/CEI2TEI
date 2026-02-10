@@ -183,7 +183,7 @@
                                 >Institut für Digitale Geisteswissenschaften,
                                 Karl-Franzens-Universität Graz</orgName>
                             <!-- old id is included in the new id and is hashed in fedora-->
-                            <idno type="PID" resp="https://https://illurk.hypotheses.org//">
+                            <idno type="PID" resp="https://drd.hypotheses.org/anr-fwf-becore">
                                 <xsl:value-of select="$pid"/>
                             </idno>
                             <ref target="{$contextname}" type="context">
@@ -197,7 +197,7 @@
 
                         </distributor>
                         <availability>
-                            <p>All texts are produced in the Illuminated Charters project and are available under a <ref target="https://creativecommons.org/licenses/by/4.0">CC-BY</ref> licence.</p>
+                            <p>All texts are produced in the BeCoRe project and are available under a <ref target="https://creativecommons.org/licenses/by/4.0">CC-BY</ref> licence.</p>
                             <p>All pictures are protected according to national copyrights
                                 and exploitation rights. Furthermore, all rights of publication and
                                 duplication of the pictorial reproductions of the documents are held
@@ -268,12 +268,8 @@
                 </fileDesc>
                 <encodingDesc>
                     <projectDesc>
-                        <p>The <ref target="https://illuminierte-urkunden.uni-graz.at"
-                                >Illuminierte
-                                Urkunden</ref> project is a cross-disciplinary historical,
-                            art-historical, and digital humanities project which collects
-                            illuminated medieval charters from all over Europe, publishes them, and
-                            explores them in detailed studies.</p>
+                        <p>The <ref target="https://drd.hypotheses.org/anr-fwf-becore"
+                                >Between Composition and Reception: the Authority of Medieval Charters / Entre composition et réception : l’autorité des actes médiévaux (<abbr>BeCoRe></abbr></ref> aims at a comparative study of the textual and graphical signs of authority and validity in late medieval charters in France and Austria, basing on the resources given by Monasterium. See more details on the <ref target="https://anr.fr/Project-ANR-19-CE27-0021">ANR website</ref>.</p>
                     </projectDesc>
                     <listPrefixDef>
                         <prefixDef ident="zotero" matchPattern="([a-z]+[a-z0-9]*)"

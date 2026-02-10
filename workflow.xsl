@@ -179,12 +179,11 @@
                     <publicationStmt>
                         <publisher>
                             <orgName ref="http://d-nb.info/gnd/1137284463"
-                                corresp="https://informationsmodellierung.uni-graz.at"
-                                >Zentrum für
-                                Informationsmodellierung - Austrian Centre for Digital Humanities,
+                                corresp="https://digital-humanities.uni-graz.at"
+                                >Institut für Digitale Geisteswissenschaften,
                                 Karl-Franzens-Universität Graz</orgName>
                             <!-- old id is included in the new id and is hashed in fedora-->
-                            <idno type="PID" resp="https://illuminierte-urkunden.uni-graz.at/">
+                            <idno type="PID" resp="https://https://illurk.hypotheses.org//">
                                 <xsl:value-of select="$pid"/>
                             </idno>
                             <ref target="{$contextname}" type="context">
@@ -198,7 +197,8 @@
 
                         </distributor>
                         <availability>
-                            <p>All texts and pictures are protected according to national copyrights
+                            <p>All texts are produced in the Illuminated Charters project and are available under a <ref target="https://creativecommons.org/licenses/by/4.0">CC-BY</ref> licence.</p>
+                            <p>All pictures are protected according to national copyrights
                                 and exploitation rights. Furthermore, all rights of publication and
                                 duplication of the pictorial reproductions of the documents are held
                                 by the respective archive’s proprietor. Any means of publication is
